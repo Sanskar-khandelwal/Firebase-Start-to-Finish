@@ -1,0 +1,23 @@
+{
+  "name": "firebase",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sanskar-khandelwal/Learning-Firebase.git"
+  },
+  "author": "Sanskar Khandelwal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sanskar-khandelwal/Learning-Firebase/issues"
+  },
+  "homepage": "https://github.com/Sanskar-khandelwal/Learning-Firebase#readme",
+  "devDependencies": {
+    "webpack": "^5.75.0",
+    "webpack-cli": "^4.10.0"
+  }
+}
