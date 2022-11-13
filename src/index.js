@@ -33,4 +33,5 @@ const data = getDocs(colRef)
   })
   .catch((err) => console.log(err.message));
 
-console.log(data);
+// adding and deleting data from the from database
+
