@@ -10,6 +10,8 @@ import {
   doc,
   query,
   where,
+  orderBy,
+  serverTimestamp,
 } from "firebase/firestore";
 
 // changing the styles of the body page
@@ -34,9 +36,8 @@ const db = getFirestore();
 //  collection ref
 const colRef = collection(db, "Hostels");
 
-//queries
-const q = query(colRef, where("name", "==", "Stuti Boys hostel"));
-
+// firebase queries
+const q = query(colRef, orderBy("createdAt"));
 
 //get collection data (everytime we get data we have to reload the page to show it to user)
 // const data = getDocs(colRef)
@@ -76,6 +77,7 @@ addHostelForm.addEventListener("submit", (e) => {
     name: addHostelForm.name.value,
     rating: addHostelForm.rating.value,
     price: addHostelForm.price.value,
+    createdAt: serverTimestamp(),
   }).then(() => {
     addHostelForm.reset();
   });
@@ -91,5 +93,3 @@ deleteHostelForm.addEventListener("submit", (e) => {
     deleteHostelForm.reset();
   });
 });
-
-// firebase queries
