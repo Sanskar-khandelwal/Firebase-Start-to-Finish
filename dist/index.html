@@ -5,10 +5,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Learning Firebase</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"
+      integrity="sha512-EZLkOqwILORob+p0BXZc+Vm3RgJBOe1Iq/0fiI7r/wJgzOFZMlsqTa29UEl6v6U6gsV4uIpsNZoV32YZqrCRCQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
   <body>
-    <h1>Hello my br other from india, I love playing games</h1>
+    <h1>Learning firebase</h1>
 
+    <h2>Adding the book in the db</h2>
+
+    <form class="add">
+      <label for="name">
+        Name
+        <input type="text" id="name" name="input-name" />
+      </label>
+
+      <label for="price">
+        Price
+        <input type="text" id="price" name="input-price" />
+      </label>
+      <button>Add a new book</button>
+    </form>
+
+    <h2>deleting the book from the db</h2>
+    <form class="delete">
+      <label for="id">
+        Name
+        <input type="text" id="id" name="id" required />
+      </label>
+
+      <button>Add a new book</button>
+    </form>
     <script src="../dist/bundle.js"></script>
   </body>
 </html>

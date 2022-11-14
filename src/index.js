@@ -2,6 +2,9 @@ import { initializeApp } from "firebase/app";
 
 import { getFirestore, collection, getDocs } from "firebase/firestore";
 
+// changing the styles of the body page
+document.querySelector("body").style.backgroundColor = "gray";
+
 const firebaseConfig = {
   apiKey: "AIzaSyDikyfOski3dzoQ7a-0ZnA_7l65AkCdc3A",
   authDomain: "hostel-in-india.firebaseapp.com",
@@ -32,6 +35,15 @@ const data = getDocs(colRef)
     });
   })
   .catch((err) => console.log(err.message));
+// adding and deleting document form 
 
-// adding and deleting data from the from database
+const addHostelForm = document.querySelector('.add');
+addHostelForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+});
 
+// deleting documents 
+const deleteHostelForm = document.querySelector('delete');
+deleteHostelForm.addEventListener('submit', (e) => {
+  e.preventDefault()
+})
