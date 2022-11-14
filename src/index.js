@@ -3,7 +3,8 @@ import { initializeApp } from "firebase/app";
 import {
   getFirestore,
   collection,
-  getDocs,
+  // getDocs,
+  onSnapshot,
   addDoc,
   deleteDoc,
   doc,
@@ -33,24 +34,30 @@ const colRef = collection(db, "Hostels");
 
 console.log(colRef);
 
-//get collection data
-const data = getDocs(colRef)
-  .then((snapshot) => {
-    let hostels = [];
-    snapshot.docs.forEach((doc) => {
-      hostels.push({ ...doc.data(), id: doc.id });
-    });
-    console.log(hostels);
-  })
-  .catch((err) => console.log(err.message));
-// adding and deleting document form
+//get collection data (everytime we get data we have to reload the page to show it to user)
+// const data = getDocs(colRef)
+//   .then((snapshot) => {
+//     let hostels = [];
+//     snapshot.docs.forEach((doc) => {
+//       hostels.push({ ...doc.data(), id: doc.id });
+//     });
+//     console.log(hostels);
+//   })
+//   .catch((err) => console.log(err.message));
 
+//get real time data
+// This function will run everytime there will be a change in collection and once the site first loads
+onSnapshot(colRef, (snapshot) => {
+  let hostels = [];
+  snapshot.docs.forEach((doc) => {
+    hostels.push({ ...doc.data(), id: doc.id });
+  });
+  console.log(hostels);
+});
+// adding and deleting document form
 const addHostelForm = document.querySelector(".add");
 addHostelForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  console.log(addHostelForm.name.value);
-  console.log(addHostelForm.rating.value);
-  console.log(addHostelForm.price.value);
   addDoc(colRef, {
     name: addHostelForm.name.value,
     rating: addHostelForm.rating.value,
@@ -70,3 +77,5 @@ deleteHostelForm.addEventListener("submit", (e) => {
     deleteHostelForm.reset();
   });
 });
+
+//  Learning real time data addition and deletion to/from the database
