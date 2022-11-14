@@ -8,6 +8,8 @@ import {
   addDoc,
   deleteDoc,
   doc,
+  query,
+  where,
 } from "firebase/firestore";
 
 // changing the styles of the body page
@@ -32,7 +34,9 @@ const db = getFirestore();
 //  collection ref
 const colRef = collection(db, "Hostels");
 
-console.log(colRef);
+//queries
+const q = query(colRef, where("name", "==", "Stuti Boys hostel"));
+
 
 //get collection data (everytime we get data we have to reload the page to show it to user)
 // const data = getDocs(colRef)
@@ -47,7 +51,17 @@ console.log(colRef);
 
 //get real time data
 // This function will run everytime there will be a change in collection and once the site first loads
-onSnapshot(colRef, (snapshot) => {
+
+// onSnapshot(colRef, (snapshot) => {
+//   let hostels = [];
+//   snapshot.docs.forEach((doc) => {
+//     hostels.push({ ...doc.data(), id: doc.id });
+//   });
+//   console.log(hostels);
+// });
+
+// it willl only give the data when it matches the query
+onSnapshot(q, (snapshot) => {
   let hostels = [];
   snapshot.docs.forEach((doc) => {
     hostels.push({ ...doc.data(), id: doc.id });
@@ -78,4 +92,4 @@ deleteHostelForm.addEventListener("submit", (e) => {
   });
 });
 
-//  Learning real time data addition and deletion to/from the database
+// firebase queries
