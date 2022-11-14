@@ -21,24 +21,28 @@
     <form class="add">
       <label for="name">
         Name
-        <input type="text" id="name" name="input-name" />
+        <input type="text" id="name" name="name" required />
       </label>
 
       <label for="price">
         Price
-        <input type="text" id="price" name="input-price" />
+        <input type="text" id="price" name="price" required />
       </label>
-      <button>Add a new book</button>
+      <label for="rating">
+        rating
+        <input type="number" id="rating" name="rating" required />
+      </label>
+      <button>Add Hostel</button>
     </form>
 
     <h2>deleting the book from the db</h2>
     <form class="delete">
       <label for="id">
-        Name
+        document:id
         <input type="text" id="id" name="id" required />
       </label>
 
-      <button>Add a new book</button>
+      <button>delete Hostel</button>
     </form>
     <script src="../dist/bundle.js"></script>
   </body>

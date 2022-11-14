@@ -1,9 +1,16 @@
 import { initializeApp } from "firebase/app";
 
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  addDoc,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
 
 // changing the styles of the body page
-document.querySelector("body").style.backgroundColor = "gray";
+document.querySelector("body").style.backgroundColor = "#e6e6fa";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDikyfOski3dzoQ7a-0ZnA_7l65AkCdc3A",
@@ -33,17 +40,33 @@ const data = getDocs(colRef)
     snapshot.docs.forEach((doc) => {
       hostels.push({ ...doc.data(), id: doc.id });
     });
+    console.log(hostels);
   })
   .catch((err) => console.log(err.message));
-// adding and deleting document form 
+// adding and deleting document form
 
-const addHostelForm = document.querySelector('.add');
-addHostelForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+const addHostelForm = document.querySelector(".add");
+addHostelForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  console.log(addHostelForm.name.value);
+  console.log(addHostelForm.rating.value);
+  console.log(addHostelForm.price.value);
+  addDoc(colRef, {
+    name: addHostelForm.name.value,
+    rating: addHostelForm.rating.value,
+    price: addHostelForm.price.value,
+  }).then(() => {
+    addHostelForm.reset();
+  });
 });
 
-// deleting documents 
-const deleteHostelForm = document.querySelector('delete');
-deleteHostelForm.addEventListener('submit', (e) => {
-  e.preventDefault()
-})
+// deleting documents
+const deleteHostelForm = document.querySelector(".delete");
+
+deleteHostelForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const docRef = doc(db, "Hostels", deleteHostelForm.id.value);
+  deleteDoc(docRef).then(() => {
+    deleteHostelForm.reset();
+  });
+});
