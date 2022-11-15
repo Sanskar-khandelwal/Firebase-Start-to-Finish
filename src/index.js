@@ -12,6 +12,7 @@ import {
   where,
   orderBy,
   serverTimestamp,
+  getDoc
 } from "firebase/firestore";
 
 // changing the styles of the body page
@@ -92,4 +93,18 @@ deleteHostelForm.addEventListener("submit", (e) => {
   deleteDoc(docRef).then(() => {
     deleteHostelForm.reset();
   });
+});
+
+// getting a single document
+const docRef = doc(db, 'Hostels', "Uj4fMNydlLcML9L4dN3l");
+
+// this is not the real time data
+// getDoc(docRef).then(doc => {
+//   console.log(doc.data(), doc.id)
+// });
+
+
+// on snapshot will give the real time data, the call back function will always fire when data will change and also the first time the sites loads
+onSnapshot(docRef, () => {
+  console.log(doc.data(), doc.id)
 });
